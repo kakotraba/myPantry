@@ -1,0 +1,20 @@
+Kyle Kotraba
+Project Proposal
+12 feb 2023
+
+https://github.com/kakotraba/myPantry.git
+
+My project will be an interactive family recipe box…myPantry
+
+Multiple users can register to the site…standard security and validation at login/reg
+Once logged in, users may…
+View all recipes along with large images of the finished recipe (MVP), 
+default to least viewed recipe by currently logged-in user, but may be sorted/filtered by various options…backlog
+Create new recipes by choosing ingredients from a radio button list -or- if the ingredient isn’t listed, enter the new ingredient in a text entry and it will be added to the list…MVP
+Access the “Meal Wizard” which allows users to choose the ingredients they have on-hand or just want to cook with. The user will choose from a list containing all ingredients of all recipes in the DB.  Will require a DB query to pull all ingredients into a list and another to determine which meals can be made from the ingredients that are chosen by the user….MVP
+Access the Menu Builder, which allows users to plan a full week of meals.  The menu builder could have options to automatically assign easier/shorter prep meals to weekday nights and more complicated meals to weekends, or encourage variety by “collating” proteins…chicken one day, beef the next, fish the day after…It could enforce dietary restrictions by only allowing meals under a set number of calories/carbs or only allow vegetarian/vegan meals…(backlog)
+Access your grocery store’s API to keep a “virtual inventory” of your pantry. (Backlog)
+Every time you make an online order, all food items are added to the myPantry live inventory tracker. 
+As recipes are chosen, the app removes the necessary ingredients from the live inventory. 
+The Meal Wizard can make automatic suggestions through push notifications based on the myPantry inventory, rather than waiting for a user’s input. 
+Alerts can be setup to notify users when a commonly used ingredient is running low, or automatically re-order through the API. 
