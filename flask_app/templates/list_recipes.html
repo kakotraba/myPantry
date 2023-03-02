@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Hi {{ user.first_name }}!</h1>
+        <h4>All Recipes:</h4>
+        <table class="table table-dark table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Ingredient 1</th>
+                    <th scope="col">Ingredient 2</th>
+                    <th scope="col">Ingredient 3</th>
+                    <th scope="col">Ingredient 4</th>
+                    <th scope="col">Ingredient 5</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipe_list %}
+                <tr>
+                    <th scope="row">{{recipe.name}}</th>
+                    <td>{{recipe.description}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/recipes/new">+ Create</a> | <a href="/users/logout">logout</a>
+    </div>
+</body>
+</html>
