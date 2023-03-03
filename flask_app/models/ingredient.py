@@ -55,25 +55,25 @@ class Ingredient:
         return ingredients_list
     
     @classmethod
-    def get_all(cls):
-        query = "select * from users";
-        results = connectToMySQL('users_schema').query_db(query)
-        users = []
-        for u in results:
-            users.append( cls(u) )
-        print(users)
-        return users
-    
-    @classmethod
-    def get_all_shows_with_poster_data(cls):
-        query = "SELECT * FROM shows JOIN users on shows.user_id = users.id;"
-        results = connectToMySQL(DB).query_db(query)
-        show_list = []
-        for show_user_dictionary in results:
-            show_class = cls(show_user_dictionary)
-            show_list.append(show_class)
-        return show_list
+    def save_valid_ingredient(cls, request_form_data):
+        if not cls.is_valid(request_form_data):
+            print("   *!*!*!*!*!*!*   INVALID INGREDIENT DATA   *!*!*!*!*!*!*   ")
+            return False
+        print("   *$*$*$*$*$*$*   INGREDIENT DATA VALIDATED    *$*$*$*$*$*$*   ")
+        query = """INSERT INTO ingredients (name , description)
+                    VALUES (%(name)s, %(description)s)
+                    """
+        result = connectToMySQL(DB).query_db(query, request_form_data)
+        return result
         
+    @classmethod
+    def get_one_ingredient(cls,ingredient_id):
+        query = "SELECT * FROM ingredients WHERE ingredients.id = %(id)s;"
+        result = connectToMySQL(DB).query_db(query,ingredient_id)
+        #print(result[0])
+        ingredient_class = cls(result[0])
+        print(ingredient_class)
+        return ingredient_class
         
 
 #####################################

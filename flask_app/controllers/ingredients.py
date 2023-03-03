@@ -32,4 +32,27 @@ def new_ingredients_page():
     if 'user_id' not in session:
         print("   *!!!*!!!*!!!*   ACCESS DENIED - NOT IN SESSION   *!!!*!!!*!!!*   ")
         return redirect('/')
-    return render_template("new_ingredients.html" , ingredient_list = Ingredient.get_all_ingredients)
+    return render_template("new_ingredient.html")
+
+@app.route("/ingredients/save_to_db", methods=['POST'])
+def save_ingredient_to_db(): 
+    
+    user_supplied_form_data = {
+        "name": request.form['name'],
+        "description": request.form['description'],
+        "user_id": session['user_id']
+    } 
+    valid_ingredient = Ingredient.save_valid_ingredient(user_supplied_form_data)
+    if not valid_ingredient:
+        print("   *!*!*!*!*!*!*   CREATE FAILED   *!*!*!*!*!*!*   ")
+        return redirect("/ingredients/new")
+    print("   *$*$*$*$*$*$*   INGREDIENT POSTED SUCCESSFULLY    *$*$*$*$*$*$*   ")
+    return redirect('/ingredients/list')
+
+@app.route('/ingredients/edit/<int:ingredient_id>')
+def edit_ingredient_page(ingredient_id):
+    if 'user_id' not in session:
+        print("   *!!!*!!!*!!!*   ACCESS DENIED - NOT IN SESSION   *!!!*!!!*!!!*   ")
+        return redirect('/')
+    ingredient_data ={"id":ingredient_id}
+    return render_template("edit_ingredient.html" , ingredient=Ingredient.get_one_ingredient(ingredient_data) , user = user.User.get_by_id(session['user_id']) )

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingredients</title>
+    <title>myPantry</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -16,6 +16,7 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,11 +24,12 @@
                 <tr>
                     <th scope="row">{{ingredient.name}}</th>
                     <td>{{ingredient.description}}</td>
+                    <td><a href="/ingredients/view/{{ingredient.id}}">show</a> | <a href="/ingredients/edit/{{ingredient.id}}">edit</a> | <a href="/ingredients/delete/{{ingredient.id}}">delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="/ingredients/new">add a new ingredient</a> | <a href="/users/logout">logout</a>
+        <a href="/ingredients/new">add a new ingredient</a> | <a href="/users/logout">logout</a> | <a href="/recipes/list">See All Recipes</a> | <a href="/recipes/new">New Recipe</a>
     </div>
 </body>
 </html>

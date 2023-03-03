@@ -15,23 +15,19 @@
             <thead>
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Ingredient 1</th>
-                    <th scope="col">Ingredient 2</th>
-                    <th scope="col">Ingredient 3</th>
-                    <th scope="col">Ingredient 4</th>
-                    <th scope="col">Ingredient 5</th>
+                    <th scope="col">Instructions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for recipe in recipe_list %}
                 <tr>
                     <th scope="row">{{recipe.name}}</th>
-                    <td>{{recipe.description}}</td>
+                    <td>{{recipe.instructions}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="/recipes/new">+ Create</a> | <a href="/users/logout">logout</a>
+        <a href="/recipes/new">New Recipe</a> | <a href="/users/logout">logout</a> | <a href="/ingredients/new">New Ingredient</a> | <a href="/ingredients/list">List Ingredients</a>
     </div>
 </body>
 </html>
