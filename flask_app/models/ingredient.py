@@ -74,6 +74,13 @@ class Ingredient:
         ingredient_class = cls(result[0])
         print(ingredient_class)
         return ingredient_class
+    
+    @classmethod
+    def delete(cls,ingredient_id):
+        query = "DELETE FROM ingredients WHERE id = %(id)s"
+        result = connectToMySQL(DB).query_db(query,ingredient_id)
+        print(result)
+
         
 
 #####################################

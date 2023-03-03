@@ -55,4 +55,14 @@ def edit_ingredient_page(ingredient_id):
         print("   *!!!*!!!*!!!*   ACCESS DENIED - NOT IN SESSION   *!!!*!!!*!!!*   ")
         return redirect('/')
     ingredient_data ={"id":ingredient_id}
-    return render_template("edit_ingredient.html" , ingredient=Ingredient.get_one_ingredient(ingredient_data) , user = user.User.get_by_id(session['user_id']) )
+    return render_template("edit_ingredient.html" , ingredient=Ingredient.get_one_ingredient()(ingredient_data) , user = user.User.get_by_id(session['user_id']) )
+
+
+@app.route('/ingedients/delete/<int:ingedient_id>')
+def delete_ingedient(ingedient_id):
+    if 'user_id' not in session:
+        print("   *!!!*!!!*!!!*   ACCESS DENIED - NOT IN SESSION   *!!!*!!!*!!!*   ")
+        return redirect('/')
+    ingedient_data = {'id':ingedient_id}
+    Ingredient.delete(ingedient_data)
+    return redirect('/ingedients/list')
