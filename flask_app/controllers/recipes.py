@@ -43,8 +43,11 @@ def new_recipe_page():
 def save_recipe_to_db(): 
     
     user_supplied_form_data = {
-        "title": request.form['title'],
-        "description": request.form['description'],
+        "name": request.form['name'],
+        "instructions": request.form['instructions'],
+        "ingredient_1": request.form['ingredient_1'],
+        "ingredient_2": request.form['ingredient_2'],
+        "ingredient_3": request.form['ingredient_3'],
         "user_id": session['user_id']
     } 
     valid_recipe = Recipe.save_valid_recipe(user_supplied_form_data)

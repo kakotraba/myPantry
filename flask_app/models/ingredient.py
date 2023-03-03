@@ -32,7 +32,7 @@ class Ingredient:
     def __init__(self, data):
         self.id = data['id']
         self.name = data['name']
-        self.instructions = data['description']
+        self.description = data['description']
 
 
 
@@ -45,13 +45,34 @@ class Ingredient:
 
     @classmethod
     def get_all_ingredients(cls):
-        query = "SELECT * FROM ingedients;"
+        query = "SELECT * FROM ingredients;"
         results = connectToMySQL(DB).query_db(query)
-        ingredient_list = []
-        for ingredient_dictionary in results:
-            ingredient_class = cls(ingredient_dictionary)
-            ingredient_list.append(ingredient_class)
-        return ingredient_list
+        ingredients_list = []
+        for ingredients_dictionary in results:
+            ingredients_class = cls(ingredients_dictionary)
+            ingredients_list.append(ingredients_class)
+        print(ingredients_list)
+        return ingredients_list
+    
+    @classmethod
+    def get_all(cls):
+        query = "select * from users";
+        results = connectToMySQL('users_schema').query_db(query)
+        users = []
+        for u in results:
+            users.append( cls(u) )
+        print(users)
+        return users
+    
+    @classmethod
+    def get_all_shows_with_poster_data(cls):
+        query = "SELECT * FROM shows JOIN users on shows.user_id = users.id;"
+        results = connectToMySQL(DB).query_db(query)
+        show_list = []
+        for show_user_dictionary in results:
+            show_class = cls(show_user_dictionary)
+            show_list.append(show_class)
+        return show_list
         
         
 

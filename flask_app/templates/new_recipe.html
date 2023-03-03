@@ -32,9 +32,28 @@
             <div class="form-group">
                 <label for="ingredient_1">Ingredient 1</label>
                 <select class="form-control" id="ingredient_1">
-                    {% for ingredient in ingredient_list %}
+                    <option>select...</option>
+                {% for ingredient in ingredient_list %}
                     <option>{{ingredient.name}}</option>
-                    {% endfor %}
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ingredient_1">Ingredient 2</label>
+                <select class="form-control" id="ingredient_2">
+                    <option>select...</option>
+                {% for ingredient in ingredient_list %}
+                    <option>{{ingredient.name}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ingredient_1">Ingredient 3</label>
+                <select class="form-control" id="ingredient_3">
+                    <option>select...</option>
+                {% for ingredient in ingredient_list %}
+                    <option>{{ingredient.name}}</option>
+                {% endfor %}
                 </select>
             </div>
             <input type="hidden" name="user_id" value="session[user_id]">

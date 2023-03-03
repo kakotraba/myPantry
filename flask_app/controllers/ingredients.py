@@ -32,4 +32,4 @@ def new_ingredients_page():
     if 'user_id' not in session:
         print("   *!!!*!!!*!!!*   ACCESS DENIED - NOT IN SESSION   *!!!*!!!*!!!*   ")
         return redirect('/')
-    return render_template("new_ingredients.html")
+    return render_template("new_ingredients.html" , ingredient_list = Ingredient.get_all_ingredients)

@@ -64,13 +64,26 @@ class Recipe:
             print("   *!*!*!*!*!*!*   INVALID RECIPE DATA   *!*!*!*!*!*!*   ")
             return False
         print("   *$*$*$*$*$*$*   RECIPE DATA VALIDATED    *$*$*$*$*$*$*   ")
-        query = """INSERT INTO recipes (title, description)
-                    VALUES (%(title)s, %(description)s)
+        query = """INSERT INTO recipes (name , instructions)
+                    VALUES (%(name)s, %(instructions)s)
                     INSERT INTO recipes_ingredients (recipes_id, ingredients_id)
                     VALUES (%)
                     """
         result = connectToMySQL(DB).query_db(query, request_form_data)
         return result
+    
+    
+    @classmethod
+    def get_by_id(cls, recipe_id):
+        data = {"id": recipe_id}
+        query = "SELECT * FROM recipes WHERE id = %(id)s;"
+        result = connectToMySQL(DB).query_db(query,data)
+        # Didn't find a matching user
+        if len(result) < 1:
+            return False
+            print("   *!*!*!*!*!*!*   NO MATCHING USER FOUND   *!*!*!*!*!*!*   ")
+        print(cls(result[0]))
+        return cls(result[0])
     
     
     
@@ -92,10 +105,10 @@ class Recipe:
     @staticmethod
     def is_valid(recipe):
         valid = True
-        if len(recipe["title"]) < 3:
+        if len(recipe["name"]) < 3:
             valid = False
-            flash("Title must be at least 3 characters.", "recipe")           
-        if len(recipe["description"]) < 3:
+            flash("Name must be at least 3 characters.", "recipe")           
+        if len(recipe["instructions"]) < 3:
             valid = False
-            flash("Description must be at least 3 characters.", "recipe") 
+            flash("Instructions must be at least 3 characters.", "recipe") 
         return valid
